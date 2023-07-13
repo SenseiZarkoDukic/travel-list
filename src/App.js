@@ -24,6 +24,7 @@ function Logo() {
 function Form() {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
+  // const [allItems, setAllItems] = useState(initialItems);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -32,8 +33,15 @@ function Form() {
 
     const newItem = { description, quantity, packed: false, id: Date.now() };
 
-    initialItems[initialItems.length] = newItem;
-    console.log(initialItems);
+    // setAllItems((i) => {
+    //   i = allItems.push(newItem);
+    // });
+
+    // console.log(allItems);
+
+    // initialItems[initialItems.length] = newItem;
+
+    // console.log(initialItems); I did this, let's see if I was right
     setDescription("");
     setQuantity(1);
   }
