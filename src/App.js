@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function App() {
   const [items, setItems] = useState([]);
+
   // const [numItems, setNumItems] = useState(0);
 
   function handleAddItems(item) {
@@ -30,7 +31,7 @@ export default function App() {
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
       />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }
@@ -49,7 +50,7 @@ function Form({ onAddItems }) {
     if (!description) return;
 
     const newItem = { description, quantity, packed: false, id: Date.now() };
-    console.log(newItem);
+
     onAddItems(newItem);
     // setAllItems((i) => {
     //   i = allItems.push(newItem);
@@ -124,10 +125,26 @@ function Item({ item, onDeleteItem, onToggleItem }) {
   );
 }
 
-function Stats() {
+function Stats({ items }) {
+  const numItems = items.length;
+  const packedItems = items.filter((item) => item.packed).length;
+  let percPackedItems = Math.round((packedItems * 100) / numItems);
+
+  console.log(numItems);
+  console.log(packedItems);
+  console.log(percPackedItems);
+
   return (
     <footer className="stats">
-      <em>You have X items on your list, and you already packed X (X%)</em>
+      {percPackedItems === 100 ? (
+        <em>You got everything! Ready to go ✈️</em>
+      ) : (
+        <em>
+          You have {numItems} items on your list, and you already packed{" "}
+          {packedItems} (
+          {isNaN(percPackedItems) ? (percPackedItems = 0) : percPackedItems}%)
+        </em>
+      )}
     </footer>
   );
 }
