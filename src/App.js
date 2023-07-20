@@ -27,7 +27,7 @@ export default function App() {
       "Are you sure you want to delete all items?"
     );
 
-    setItems([]);
+    if (confirmed) setItems([]);
   }
   return (
     <div className="app">
