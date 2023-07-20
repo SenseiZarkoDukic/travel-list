@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Logo } from "./Logo";
+import Logo from "./Logo";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -57,15 +57,6 @@ function Form({ onAddItems }) {
     const newItem = { description, quantity, packed: false, id: Date.now() };
 
     onAddItems(newItem);
-    // setAllItems((i) => {
-    //   i = allItems.push(newItem);
-    // });
-
-    // console.log(allItems);
-
-    // initialItems[initialItems.length] = newItem;
-
-    // console.log(initialItems); I did this, let's see if I was right
     setDescription("");
     setQuantity(1);
   }
